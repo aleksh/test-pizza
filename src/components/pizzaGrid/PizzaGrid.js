@@ -1,7 +1,7 @@
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import PizzItem from "../pizzaItem/PizzaItem";
+import PizzItem from "./PizzaItem";
 import Styles from "./PizzaGrid.module.scss";
 
 function PizzaGrid() {
@@ -12,7 +12,7 @@ function PizzaGrid() {
 					key={pizza.id}
 					in={true}
 					appear={true}
-					timeout={150 * i}
+					timeout={200 * i}
 					classNames="pizza"
 				>
 					<PizzItem item={pizza} />
