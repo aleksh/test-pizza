@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import Styles from "./App.module.scss";
+import PizzaGrid from "./components/pizzaGrid/PizzaGrid";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className={Styles.App}>
+			<header>Header</header>
+			<main>
+				<PizzaGrid />
+			</main>
+			<footer>Footer</footer>
+		</div>
+	);
 }
 
 export default App;
