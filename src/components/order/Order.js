@@ -1,12 +1,14 @@
 import React from "react";
 
 import Styles from "./Order.module.scss";
+import OrderForm from "./OrderForm";
 
-function Order({ toggleBasket }) {
-	return <div className={Styles.Order}>
-    sdfdsf sdfgdfs
-    
-    </div>;
-}
+const Order = () => {
+	return (
+		<div className={Styles.Order}>
+			<OrderForm />
+		</div>
+	);
+};
 
 export default Order;

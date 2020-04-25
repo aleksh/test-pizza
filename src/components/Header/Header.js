@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import { GlobalStateContext } from "../../context/GlobalContextProvider";
+import { Link } from "react-router-dom";
 import IconBasket from "../icons/basket";
 import Styles from "./Header.module.scss";
 
@@ -15,7 +16,9 @@ function Header({ toggleBasket }) {
 
 	return (
 		<header>
-			<div>Header</div>
+			<div className={Styles.Nav}>
+				<Link to="/">Home</Link>
+			</div>
 			<div className={Styles.basket} onClick={_handleClickBasket}>
 				<IconBasket />
 				<span>{totalItems}</span>
