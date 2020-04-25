@@ -5,11 +5,13 @@ import {
 	GlobalDispatchContext,
 	GlobalStateContext,
 } from "../../context/GlobalContextProvider";
+import { useHistory } from "react-router-dom";
 import Styles from "./Basket.module.scss";
 import BasketItem from "./BasketItem";
 import { CSSTransition } from "react-transition-group";
 
 function Basket({ show, setShowBasket }) {
+	const history = useHistory();
 	const { orders, totalPrice } = useContext(GlobalStateContext);
 	const dispatch = useContext(GlobalDispatchContext);
 
@@ -22,11 +24,17 @@ function Basket({ show, setShowBasket }) {
 	};
 
 	const addCount = (orderId) => {
+		console.log(history);
 		dispatch({ type: "ADD_COUNT", payload: orderId });
 	};
 
 	const removeCount = (orderId) => {
 		dispatch({ type: "REMOVE_COUNT", payload: orderId });
+	};
+
+	const _handleOrderNow = () => {
+		setShowBasket(false);
+		history.push("/order");
 	};
 
 	return (
@@ -61,7 +69,8 @@ function Basket({ show, setShowBasket }) {
 							<span>Total:</span>
 							<span>$ {totalPrice}</span>
 						</div>
-						<div className={Styles.Btn}>
+
+						<div className={Styles.Btn} onClick={_handleOrderNow}>
 							<span>Order Now</span>
 						</div>
 					</div>

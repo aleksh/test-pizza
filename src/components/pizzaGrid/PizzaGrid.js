@@ -14,26 +14,30 @@ function PizzaGrid() {
 
 	useEffect(() => {
 		dispatch({ type: "SET_PIZZAS", payload: PizzasConst });
-  }, []);
-  
-  const addToBasket = (pizza) => {
-    dispatch({ type: "ADD_TO_BASKET", payload: pizza });
-  }
+	}, []);
+
+	const addToBasket = (pizza) => {
+		dispatch({ type: "ADD_TO_BASKET", payload: pizza });
+	};
 
 	return (
-		<TransitionGroup className={Styles.Grid}>
-			{pizzas.map((pizza, i) => (
-				<CSSTransition
-					key={pizza.id}
-					in={true}
-					appear={true}
-					timeout={200 * i}
-					classNames="pizza"
-				>
-					<PizzItem item={pizza} addToBasket={addToBasket}/>
-				</CSSTransition>
-			))}
-		</TransitionGroup>
+		<>
+			{pizzas.length > 0 && (
+				<TransitionGroup className={Styles.Grid}>
+					{pizzas.map((pizza, i) => (
+						<CSSTransition
+							key={pizza.id}
+							in={true}
+							appear={true}
+							timeout={200 * i}
+							classNames="pizza"
+						>
+							<PizzItem item={pizza} addToBasket={addToBasket} />
+						</CSSTransition>
+					))}
+				</TransitionGroup>
+			)}
+		</>
 	);
 }
 
