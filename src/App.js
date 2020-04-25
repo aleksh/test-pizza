@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Styles from "./App.module.scss";
 import PizzaGrid from "./components/pizzaGrid/PizzaGrid";
 import Basket from "./components/basket/Basket";

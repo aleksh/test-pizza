@@ -6,28 +6,42 @@ import IconMinus from "../icons/minus";
 
 import Styles from "./Basket.module.scss";
 
-function BasketItem() {
+function BasketItem({ order, remove, addCount, removeCount }) {
+	const _handleRemove = () => {
+		remove(order.id);
+	};
+
+	const _handleAddCount = () => {
+		addCount(order.id);
+	};
+
+	const _handleRemoveCount = () => {
+		if (order.count > 1) {
+			removeCount(order.id);
+		}
+	};
+
 	return (
 		<div className={Styles.item}>
-			<img
-				src="https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg"
-				alt="title"
-			/>
+			<img src={order.iconUrl} alt={order.title} />
 			<div className={Styles.content}>
-				<h4>
-					Pizza Title asdfg dsfgklh sdgflhjdgfs sdgklj dsfgklj dfsgklj{" "}
-				</h4>
+				<h4>{order.title}</h4>
 				<div className={Styles.count}>
-					<IconPlus className={Styles.iconPlus} />
-					<span>1</span>
-					<IconMinus className={Styles.iconMinus} />
+					<div onClick={_handleAddCount}>
+						<IconPlus className={Styles.iconPlus} />
+					</div>
+
+					<span>{order.count}</span>
+					<div onClick={_handleRemoveCount}>
+						<IconMinus className={Styles.iconMinus} />
+					</div>
 				</div>
 				<div className={Styles.price}>
-					<span>$ 168</span>
+					<span>$ {order.price * order.count}</span>
 				</div>
 			</div>
 
-			<div className={Styles.delete}>
+			<div className={Styles.delete} onClick={_handleRemove}>
 				<IconDelete width={25} height={25} />
 			</div>
 		</div>

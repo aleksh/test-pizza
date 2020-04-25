@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import IconBasket from '../icons/basket';
-import Styles from './Header.module.scss';
+import { GlobalStateContext } from "../../context/GlobalContextProvider";
+import IconBasket from "../icons/basket";
+import Styles from "./Header.module.scss";
 
-function Header({toggleBasket}) {
+function Header({ toggleBasket }) {
+	const { totalItems } = useContext(GlobalStateContext);
+
+	const _handleClickBasket = () => {
+		if (totalItems > 0) {
+			toggleBasket();
+		}
+	};
+
 	return (
 		<header>
-      <div>Header</div>
-      <div className={Styles.basket} onClick={toggleBasket}>
-        <IconBasket />
-        <span>2</span>
-      </div>
-    </header>
+			<div>Header</div>
+			<div className={Styles.basket} onClick={_handleClickBasket}>
+				<IconBasket />
+				<span>{totalItems}</span>
+			</div>
+		</header>
 	);
 }
 

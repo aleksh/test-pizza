@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import {
+	GlobalDispatchContext,
+	GlobalStateContext,
+} from "../../context/GlobalContextProvider";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import PizzItem from "./PizzaItem";
 import Styles from "./PizzaGrid.module.scss";
 
 function PizzaGrid() {
+	const { pizzas } = useContext(GlobalStateContext);
+	const dispatch = useContext(GlobalDispatchContext);
+
+	useEffect(() => {
+		dispatch({ type: "SET_PIZZAS", payload: PizzasConst });
+  }, []);
+  
+  const addToBasket = (pizza) => {
+    dispatch({ type: "ADD_TO_BASKET", payload: pizza });
+  }
+
 	return (
 		<TransitionGroup className={Styles.Grid}>
-			{Pizza.map((pizza, i) => (
+			{pizzas.map((pizza, i) => (
 				<CSSTransition
 					key={pizza.id}
 					in={true}
@@ -15,7 +30,7 @@ function PizzaGrid() {
 					timeout={200 * i}
 					classNames="pizza"
 				>
-					<PizzItem item={pizza} />
+					<PizzItem item={pizza} addToBasket={addToBasket}/>
 				</CSSTransition>
 			))}
 		</TransitionGroup>
@@ -24,11 +39,13 @@ function PizzaGrid() {
 
 export default PizzaGrid;
 
-const Pizza = [
+const PizzasConst = [
 	{
 		id: "1",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -38,6 +55,8 @@ const Pizza = [
 		id: "2",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -47,6 +66,8 @@ const Pizza = [
 		id: "3",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -56,6 +77,8 @@ const Pizza = [
 		id: "4",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -65,6 +88,8 @@ const Pizza = [
 		id: "5",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -74,6 +99,8 @@ const Pizza = [
 		id: "6",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -83,6 +110,8 @@ const Pizza = [
 		id: "7",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -92,6 +121,8 @@ const Pizza = [
 		id: "8",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -101,6 +132,8 @@ const Pizza = [
 		id: "9",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -110,6 +143,8 @@ const Pizza = [
 		id: "10",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -119,6 +154,8 @@ const Pizza = [
 		id: "11",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -128,6 +165,8 @@ const Pizza = [
 		id: "12",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
@@ -137,6 +176,8 @@ const Pizza = [
 		id: "13",
 		imageUrl:
 			"https://mafia.ua/storage/editor/fotos/480x0/mafiya_1581069452273.jpeg",
+		icon:
+			"https://mafia.ua/storage/editor/fotos/100x100/amerikano_156706005058.jpeg",
 		price: 189,
 		title: "Mafia",
 		description:
