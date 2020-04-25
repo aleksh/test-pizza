@@ -26,17 +26,6 @@ main {
 	flex: 1 0 auto;
 }
 
-footer {
-	height: 60px;
-	flex-shrink: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #fff;
-	border-top: 1px solid #cccccc;
-	background: #000;
-}
-
 /** Pizza items animation **/
 .pizza-appear {
 	opacity: 0;

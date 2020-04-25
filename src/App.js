@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Styles from "./App.module.scss";
 import PizzaGrid from "./components/pizzaGrid/PizzaGrid";
 import Basket from "./components/basket/Basket";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 function App() {
 	const [showBasket, setShowBasket] = useState(false);
@@ -18,7 +19,7 @@ function App() {
 			<main>
 				<PizzaGrid />
 			</main>
-			<footer>Footer</footer>
+			<Footer />
 			<Basket show={showBasket} setShowBasket={setShowBasket} />
 		</div>
 	);
