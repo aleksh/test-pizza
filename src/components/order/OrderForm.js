@@ -4,9 +4,9 @@ import { Formik, Form, Field } from "formik";
 
 import Styles from "./Order.module.scss";
 
-const OrderForm = () => {
+const OrderForm = ({ submitOrder }) => {
 	const onSubmit = (values) => {
-		console.log(values);
+		submitOrder(values);
 	};
 
 	return (
@@ -22,7 +22,7 @@ const OrderForm = () => {
 			>
 				{({ errors, touched }) => (
 					<Form>
-            <h2>Order</h2>
+						<h2>Order</h2>
 						<div className={Styles.row}>
 							<div>
 								<Field
@@ -78,9 +78,9 @@ const OrderForm = () => {
 							</div>
 						</div>
 
-            <div className={Styles.Submit}>
-						  <button type="submit">Submit</button>
-            </div>
+						<div className={Styles.Submit}>
+							<button type="submit">Submit</button>
+						</div>
 					</Form>
 				)}
 			</Formik>

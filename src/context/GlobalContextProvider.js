@@ -1,35 +1,33 @@
 import React, { createContext, useReducer } from "react";
 
+export const CURRENCY = [
+	{
+		code: "usd",
+		title: "$",
+	},
+	{
+		code: "euro",
+		title: "€",
+	},
+];
+
 const initialState = {
 	pizzas: [],
 	orders: [],
 	totalPrice: 0,
 	totalItems: 0,
+	currentCurrency: CURRENCY[0],
 };
 
 export const GlobalStateContext = createContext(initialState);
 export const GlobalDispatchContext = createContext({});
 
-/*
-export const currency = [
-  {
-    id: 1,
-    code: "USD",
-    title: "$",
-  }, 
-  {
-    id: 1,
-    code: "EURO",
-    title: "€",
-  }
-]*/
-
-const calculateOrders = (orders) => {
+const calculateOrders = (orders, currentCurrency) => {
 	let totalPrice = 0;
 	let totalItems = 0;
 
 	orders.forEach((item) => {
-		totalPrice += item.price * item.count;
+		totalPrice += item.price[currentCurrency.code] * item.count;
 		totalItems += item.count;
 	});
 
@@ -58,6 +56,29 @@ function reducer(state, action) {
 				orders: [...state.orders],
 				totalPrice: state.totalPrice,
 				totalItems: state.totalItems,
+				currentCurrency: { ...state.currentCurrency },
+			};
+
+		case "CLEAN_ORDER":
+			return {
+				pizzas: [...state.pizzas],
+				orders: [],
+				totalPrice: 0,
+				totalItems: 0,
+				currentCurrency: { ...state.currentCurrency },
+			};
+
+		case "CHANGE_CURRENCY":
+			const currency = CURRENCY.filter(
+				(item) => item.code === action.payload
+			)[0];
+			updatedInfo = calculateOrders(state.orders, currency);
+			return {
+				pizzas: [...state.pizzas],
+				orders: [...state.orders],
+				totalPrice: updatedInfo.totalPrice,
+				totalItems: updatedInfo.totalItems,
+				currentCurrency: { ...currency },
 			};
 
 		case "ADD_COUNT":
@@ -69,13 +90,14 @@ function reducer(state, action) {
 				state.orders[orderIndex].count += 1;
 			}
 
-			updatedInfo = calculateOrders(state.orders);
+			updatedInfo = calculateOrders(state.orders, state.currentCurrency);
 
 			return {
 				pizzas: [...state.pizzas],
 				orders: [...state.orders],
 				totalPrice: updatedInfo.totalPrice,
 				totalItems: updatedInfo.totalItems,
+				currentCurrency: { ...state.currentCurrency },
 			};
 
 		case "REMOVE_COUNT":
@@ -87,13 +109,14 @@ function reducer(state, action) {
 				state.orders[orderIndex].count -= 1;
 			}
 
-			updatedInfo = calculateOrders(state.orders);
+			updatedInfo = calculateOrders(state.orders, state.currentCurrency);
 
 			return {
 				pizzas: [...state.pizzas],
 				orders: [...state.orders],
 				totalPrice: updatedInfo.totalPrice,
 				totalItems: updatedInfo.totalItems,
+				currentCurrency: { ...state.currentCurrency },
 			};
 
 		case "REMOVE_FROM_BASKET":
@@ -101,12 +124,13 @@ function reducer(state, action) {
 				(item) => item.id !== action.payload
 			);
 
-			updatedInfo = calculateOrders(orders);
+			updatedInfo = calculateOrders(orders, state.currentCurrency);
 			return {
 				pizzas: [...state.pizzas],
 				orders: [...orders],
 				totalPrice: updatedInfo.totalPrice,
 				totalItems: updatedInfo.totalItems,
+				currentCurrency: { ...state.currentCurrency },
 			};
 
 		case "ADD_TO_BASKET":
@@ -122,13 +146,14 @@ function reducer(state, action) {
 				state.orders[orderIndex].count += 1;
 			}
 
-			updatedInfo = calculateOrders(state.orders);
+			updatedInfo = calculateOrders(state.orders, state.currentCurrency);
 
 			return {
 				orders: [...state.orders],
 				pizzas: [...state.pizzas],
 				totalPrice: updatedInfo.totalPrice,
 				totalItems: updatedInfo.totalItems,
+				currentCurrency: { ...state.currentCurrency },
 			};
 
 		default:

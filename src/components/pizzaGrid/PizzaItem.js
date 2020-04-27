@@ -2,7 +2,7 @@ import React from "react";
 
 import Styles from "./PizzaGrid.module.scss";
 
-function PizzaItem({ item, addToBasket }) {
+function PizzaItem({ item, currency, addToBasket }) {
 
   const _handleClickAdd = () => {
     addToBasket(item);
@@ -14,7 +14,7 @@ function PizzaItem({ item, addToBasket }) {
 			<div className={Styles.details}>
 				<h3>{item.title}</h3>
 				<div className={Styles.description}>{item.description}</div>
-				<p className={Styles.price}>$ {item.price}</p>
+				<p className={Styles.price}>{currency.title} {item.price[currency.code]}</p>
 				<div className={Styles.Btn} onClick={_handleClickAdd}>
 					<span>Add To Basket</span>
 				</div>

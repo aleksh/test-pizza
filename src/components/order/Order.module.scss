@@ -1,70 +1,88 @@
 .Order {
-  display: flex;
-  justify-content: center;  
-  padding-top: 5%;
+	display: flex;
+	justify-content: center;
+	padding-top: 5%;
 }
 
-
 .Form {
-  display: flex;
-  max-width: 600px;
-  flex-direction: column;
-  background: #fdfbfb;
-  border: 1px solid #cccccc;
-  padding: 20px;
-  
-  h2 {
-    text-align: center;
-  }
+	display: flex;
+	max-width: 600px;
+	flex-direction: column;
+	background: #fdfbfb;
+	border: 1px solid #cccccc;
+	padding: 20px;
 
-  .row {
-    display:flex;
-    justify-content: space-around;
-    
-    > div {
-      display: flex;
-      flex-direction: column;
-    }
+	h2 {
+		text-align: center;
+	}
 
-    input {
-      margin: 10px 10px 4px 10px;
-      height: 30px;
-      padding: 0px 10px;
-      max-width: 300px;
-      border: 1px solid #cccccc;
-    }
+	.row {
+		display: flex;
+		justify-content: space-around;
 
-    .error {
-      min-height: 16px;
-      padding: 0px 10px;
-      color: #ff0000;
-      font-size: 12px;
-      line-height: 16px;
-    }
-  }
+		> div {
+			display: flex;
+			flex-direction: column;
+		}
 
-  .Submit {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+		input {
+			margin: 10px 10px 4px 10px;
+			height: 30px;
+			padding: 0px 10px;
+			max-width: 300px;
+			border: 1px solid #cccccc;
+		}
 
-    button {
-      border:0;
-      padding: 10px 30px;
-      line-height: 20px;
-      color: #ffffff;
-      font-size: 16px;
-      text-align: center;
-      background: #8c9f3f;
-      cursor: pointer;
-      user-select: none;
-      outline: none;
+		.error {
+			min-height: 16px;
+			padding: 0px 10px;
+			color: #ff0000;
+			font-size: 12px;
+			line-height: 16px;
+		}
+	}
 
-      &:hover {
-        background: #abbd62;
-      }
-    }
-  }
+	.Submit {
+		display: flex;
+		justify-content: center;
+		padding: 20px 0;
 
+		button {
+			border: 0;
+			padding: 10px 30px;
+			line-height: 20px;
+			color: #ffffff;
+			font-size: 16px;
+			text-align: center;
+			background: #8c9f3f;
+			cursor: pointer;
+			user-select: none;
+			outline: none;
 
+			&:hover {
+				background: #abbd62;
+			}
+		}
+	}
+}
+
+.OrderComplete {
+	display: flex;
+	flex-direction: column;
+	a {
+		border: 0;
+		padding: 10px 30px;
+		line-height: 20px;
+		color: #ffffff;
+		font-size: 16px;
+		text-align: center;
+		background: #8c9f3f;
+		cursor: pointer;
+		user-select: none;
+		outline: none;
+		text-decoration: none;
+		&:hover {
+			background: #abbd62;
+		}
+	}
 }

@@ -6,7 +6,7 @@ import IconMinus from "../icons/minus";
 
 import Styles from "./Basket.module.scss";
 
-function BasketItem({ order, remove, addCount, removeCount }) {
+function BasketItem({ order, currency, remove, addCount, removeCount }) {
 	const _handleRemove = () => {
 		remove(order.id);
 	};
@@ -37,7 +37,7 @@ function BasketItem({ order, remove, addCount, removeCount }) {
 					</div>
 				</div>
 				<div className={Styles.price}>
-					<span>$ {order.price * order.count}</span>
+					<span>{currency.title} {order.price[currency.code] * order.count}</span>
 				</div>
 			</div>
 

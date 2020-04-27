@@ -12,7 +12,7 @@ import { CSSTransition } from "react-transition-group";
 
 function Basket({ show, setShowBasket }) {
 	const history = useHistory();
-	const { orders, totalPrice } = useContext(GlobalStateContext);
+	const { orders, totalPrice, currentCurrency } = useContext(GlobalStateContext);
 	const dispatch = useContext(GlobalDispatchContext);
 
 	const removeFromBasket = (orderId) => {
@@ -24,7 +24,6 @@ function Basket({ show, setShowBasket }) {
 	};
 
 	const addCount = (orderId) => {
-		console.log(history);
 		dispatch({ type: "ADD_COUNT", payload: orderId });
 	};
 
@@ -56,7 +55,8 @@ function Basket({ show, setShowBasket }) {
 						{orders.map((order) => (
 							<BasketItem
 								key={order.id}
-								order={order}
+                order={order}
+                currency={currentCurrency}
 								addCount={addCount}
 								removeCount={removeCount}
 								remove={removeFromBasket}
@@ -67,7 +67,7 @@ function Basket({ show, setShowBasket }) {
 					<div className={Styles.Order}>
 						<div className={Styles.total}>
 							<span>Total:</span>
-							<span>$ {totalPrice}</span>
+							<span>{currentCurrency.title} {totalPrice}</span>
 						</div>
 
 						<div className={Styles.Btn} onClick={_handleOrderNow}>

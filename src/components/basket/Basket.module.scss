@@ -54,6 +54,7 @@
 					height: 100px;
 					object-fit: cover;
 					margin: 0 20px 0 0;
+					user-select: none;
 				}
 
 				.content {
@@ -68,6 +69,7 @@
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
+						user-select: none;
 					}
 
 					.count {
